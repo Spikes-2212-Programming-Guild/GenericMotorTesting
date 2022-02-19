@@ -14,19 +14,30 @@ import com.spikes2212.dashboard.Namespace;
 import com.spikes2212.dashboard.RootNamespace;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.motorcontrol.VictorSP;
-import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
+/**
+ * This is a generic motor test.
+ *
+ * <p>To use, you should change the amounts of each {@link MotorController} so it will match your needs.<br>
+ * When you enable the robot <b>on teleop</b>, you should put through the shuffleboard the
+ * correct port for each {@link MotorController}</p>
+ */
 public class Robot extends TimedRobot {
 
     private final RootNamespace rootNamespace = new RootNamespace("test motors");
     private final Supplier<Double> speed = rootNamespace.addConstantDouble("testing speed", 0.1);
 
+    /**
+     * These are the available motor controllers that you can use this test on.
+     */
     private int victorSPNum = 0, victorSPXNum = 0, talonSRXNum = 0, sparkMaxNum = 0;
+    //@TODO change the numbers according to your needed tests
 
     private final Map<Namespace, VictorSP> victorSPes = new HashMap<>();
     private final Map<Namespace, WPI_VictorSPX> victorSPXes = new HashMap<>();
