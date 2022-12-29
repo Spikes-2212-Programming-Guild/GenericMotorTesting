@@ -78,24 +78,32 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopInit() {
         for (Namespace namespace : victorSPes.keySet()) {
-            VictorSP victorSP = new VictorSP((int) namespace.getNumber("port"));
-            victorSPes.put(namespace, victorSP);
-            namespace.putData("Run " + namespace, new MoveGenericSubsystem(new MotoredGenericSubsystem("_", victorSP), speed));
+            if (victorSPes.get(namespace) == null) {
+                VictorSP victorSP = new VictorSP((int) namespace.getNumber("port"));
+                victorSPes.put(namespace, victorSP);
+                namespace.putData("Run " + namespace, new MoveGenericSubsystem(new MotoredGenericSubsystem("_", victorSP), speed));
+            }
         }
         for (Namespace namespace : victorSPXes.keySet()) {
-            WPI_VictorSPX victorSPX = new WPI_VictorSPX((int) namespace.getNumber("port"));
-            victorSPXes.put(namespace, victorSPX);
-            namespace.putData("Run " + namespace, new MoveGenericSubsystem(new MotoredGenericSubsystem("_", victorSPX), speed));
+            if (victorSPXes.get(namespace) == null) {
+                WPI_VictorSPX victorSPX = new WPI_VictorSPX((int) namespace.getNumber("port"));
+                victorSPXes.put(namespace, victorSPX);
+                namespace.putData("Run " + namespace, new MoveGenericSubsystem(new MotoredGenericSubsystem("_", victorSPX), speed));
+            }
         }
         for (Namespace namespace : talonSRXes.keySet()) {
-            WPI_TalonSRX talon = new WPI_TalonSRX((int) namespace.getNumber("port"));
-            talonSRXes.put(namespace, talon);
-            namespace.putData("Run " + namespace, new MoveGenericSubsystem(new MotoredGenericSubsystem("_", talon), speed));
+            if (talonSRXes.get(namespace) == null) {
+                WPI_TalonSRX talon = new WPI_TalonSRX((int) namespace.getNumber("port"));
+                talonSRXes.put(namespace, talon);
+                namespace.putData("Run " + namespace, new MoveGenericSubsystem(new MotoredGenericSubsystem("_", talon), speed));
+            }
         }
         for (Namespace namespace : sparkMaxes.keySet()) {
-            CANSparkMax sparkMax = new CANSparkMax((int) namespace.getNumber("port"), CANSparkMaxLowLevel.MotorType.kBrushless);
-            sparkMaxes.put(namespace, sparkMax);
-            namespace.putData("Run " + namespace, new MoveGenericSubsystem(new MotoredGenericSubsystem("_", sparkMax), speed));
+            if (sparkMaxes.get(namespace) == null) {
+                CANSparkMax sparkMax = new CANSparkMax((int) namespace.getNumber("port"), CANSparkMaxLowLevel.MotorType.kBrushless);
+                sparkMaxes.put(namespace, sparkMax);
+                namespace.putData("Run " + namespace, new MoveGenericSubsystem(new MotoredGenericSubsystem("_", sparkMax), speed));
+            }
         }
     }
 
