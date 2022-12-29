@@ -36,7 +36,7 @@ public class Robot extends TimedRobot {
     /**
      * These are the available motor controllers that you can use this test on.
      */
-    private int victorSPNum = 0, victorSPXNum = 0, talonSRXNum = 0, sparkMaxNum = 2;
+    private int victorSPNum = 0, victorSPXNum = 0, talonSRXNum = 0, sparkMaxNum = 0;
     //@TODO change the numbers according to your needed tests
 
     private final Map<Namespace, VictorSP> victorSPes = new HashMap<>();
